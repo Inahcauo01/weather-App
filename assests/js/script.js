@@ -14,18 +14,34 @@ recherche.addEventListener("click",(e)=>{
 })
 
 async function getWeather(city){
-    const rep = await fetch(url(city)); //,{ origin: "cors"} est optionnel c'est juste pour la securité
-    const repData = await rep.json();
-    // console.log(repData);
-    afficherData(repData);
+    try {
+        const rep = await fetch(url(city)); //,{ origin: "cors"} est optionnel c'est juste pour la securité
+        const repData = await rep.json();
+        afficherData(repData);
+    } catch (error) {
+        alert("Ville inexistante !")
+    }
+    
 }
 
 function afficherData(data){
     console.log(data);
-    show.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">
-                    <br>${Math.floor((data.main.temp - (273.15)))}°C
+    show.innerHTML = `<div class="top">
+                    <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" class="imgeWeather">
+                    ${Math.floor((data.main.temp - (273.15)))}°C
+                    <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" class="imgeWeather">
+                    </div>
                     <br>${data.weather[0].main}
                     <br>${data.weather[0].description}
+                    <br>Sunrize : ${toHour(data.sys.sunrise)}
+                    <br>Sunset  : ${toHour(data.sys.sunset)}
                     `;
 
+}
+
+function toHour(timestamp){
+    let date = new Date(timestamp * 1000);
+    let hours = date.getUTCHours();
+    let minutes = date.getUTCMinutes();
+    return hours + ':' + minutes;
 }

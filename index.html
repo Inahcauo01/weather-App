@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assests/style/style.css">
     <title>Weather</title>
 </head>
 <body>
-    <form id="form">
-        <input type="text" name="city" id="city" placeholder="City" autocomplete="off">
-        <button id="recherche">Recherche</button>
-    </form>
+    <div class="frame">
+        <div class="container">
+            <h1>Weather App</h1>
+            <form id="form">
+                <input type="text" name="city" id="city" placeholder="Enter Your City" autocomplete="off">
+                <button id="recherche">Recherche</button>
+            </form>
+            <div class="show"></div>
+        </div>
+    </div>
+    
 
-    <div class="show"></div>
     <!-- scripts -->
     <script src="assests/js/script.js"></script>
 </body>
